@@ -30,12 +30,12 @@
 
 <!--    <property name="hbm2ddl.import_files">import.sql</property>-->
 
-<!--    <mapping class="app.model.Address"/>-->
-    <mapping class="app.model.Member"/>
-<!--    <mapping class="app.model.FamilyMemberRelationship"/>-->
-<!--    <mapping class="app.model.RelationshipType"/>-->
-<!--    <mapping class="app.model.User"/>-->
-<!--    <mapping class="app.model.UserType"/>-->
+    <mapping class="app.model.FamilyMember"/>
+    <mapping class="app.model.Address"/>
+    <mapping class="app.model.FamilyRelationship"/>
+    <mapping class="app.model.RelationshipType"/>
+    <mapping class="app.model.User"/>
+    <mapping class="app.model.UserType"/>
 
   </session-factory>
 </hibernate-configuration>

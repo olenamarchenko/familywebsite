@@ -1,10 +1,13 @@
 package app.model;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,16 +20,19 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table
-public class FamilyMemberRelationship {
+public class FamilyRelationship {
     
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int familyRelationId;
     @Column
     private int relationshipType;
     @Column
-    private int idFrom;
+    private int familyMemberId;
     @Column
-    private int idTo;
+    private int of;
+//
+//    @ManyToMany(mappedBy = "")
+//    private Set<FamilyMember> employees = new HashSet<>();
 }

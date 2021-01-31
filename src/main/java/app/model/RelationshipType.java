@@ -18,11 +18,12 @@ import lombok.Setter;
 @Entity
 @Table
 public class RelationshipType {
-    
+
     @Id
     @Column
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int relationshipId;
     @Column
     private String name;
+
 }
