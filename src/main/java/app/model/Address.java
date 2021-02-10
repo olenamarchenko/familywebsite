@@ -1,33 +1,24 @@
 package app.model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+@Builder
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table
-public class Address {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private int id;
+public class Address extends BaseEntity implements Serializable {
+
     @Column
     private String countryCode;
     @Column
     private String address;
-
-    @OneToOne(mappedBy =  "address")
-    private FamilyMember familyMember;
 }
