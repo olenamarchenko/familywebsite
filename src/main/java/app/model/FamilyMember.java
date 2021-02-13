@@ -1,12 +1,14 @@
 package app.model;
 
-import java.time.Instant;
+import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,36 +21,30 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table
-public class FamilyMember {
-    
-    @Id
+public class FamilyMember extends BaseEntity implements Serializable {
+
     @Column
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private int id;
-    
-    @Column (name = "full_name")
     private String fullName;
-    
-    @Column (name = "email")
-    private String email;
 
-    @Column(name = "user_type")
-    private int userType;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "email")
+    private User email;
 
-    @Column(name = "address")
-    private int address;
-    
-    @Column (name = "contact_details")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "familyRelationships")
+    @OrderColumn(name = "relationship_type")
+    private List<FamilyRelationship> familyRelationships;
+
+    @Column
     private String contactDetails;
-    @Column(name = "created_at")
-    private Instant createdAt;
-    @Column (name = "family_relationship")
-//    private List<Integer> familyRelationship; -- when passing List error: Caused by: org.hibernate.MappingException: Could not determine type for: java.util.List, at table: family_member, for columns: [org.hibernate.mapping.Column(family_relationship)]
-//	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:499) ~[hibernate-core-5.4.21.Final.jar:5.4.21.Final]
-    private int familyRelationship;
-    
+
     @Override
     public String toString() {
         return "FamilyMember [id=" + id + ", fullName=" + fullName + "]";
     }
+
 }

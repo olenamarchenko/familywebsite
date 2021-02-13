@@ -11,7 +11,7 @@ public class FamilyMemberService {
     @Autowired
     private FamilyMemberRepository familyMemberRepository;
     
-    public List list() {
+    public List getFamilyMembers() {
         return familyMemberRepository.findAll();
     }
 }
